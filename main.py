@@ -182,7 +182,8 @@ def predict(symbol,timeframe,future_prediction=False,using_all_models=False):
         TV index: {tindex}
         Current_utc_time: {str(datetime.utcnow())}
         Last_three: {last_three}
-
+        
+        Symbol: {symbol.upper()}
         Timeframe: {timeframe}
         Yf_buy: {y_buy}
         Yf_sell: {y_sell}
@@ -198,6 +199,7 @@ def predict(symbol,timeframe,future_prediction=False,using_all_models=False):
         Suggestion: {suggestion}'''
     return info
 
-info = predict("btc", "15m", future_prediction=False, using_all_models=True)
-print(info)
+if __name__ == "__main__":
+   info = predict("btc", "15m", future_prediction=False, using_all_models=True)
+   print(info)
     
