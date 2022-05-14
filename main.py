@@ -119,7 +119,6 @@ def yf_data_handler(symbol, period, timeframe):
     if timeframe == "1d":
        return -1,index
     if timeframe == "1wk":
-        print(str(index[-2]).strip().split("-")[-1][:2])
         if int(str(index[-2]).strip().split("-")[-1][:2]) - int(str(index[-1]).strip().split("-")[-1][:2]) != 7:
             return -2,index
         else:
@@ -178,28 +177,28 @@ def predict(symbol,timeframe,future_prediction=False,using_all_models=False):
         suggestion = "SELL"
 
     info = f'''
-        YF index: {index}
-        TV index: {tindex}
-        Current_utc_time: {str(datetime.utcnow())}
-        Last_three: {last_three}
+YF index: {index}
+TV index: {tindex}
+Current_utc_time: {str(datetime.utcnow())}
+Last_three: {last_three}
         
-        Symbol: {symbol.upper()}
-        Timeframe: {timeframe}
-        Yf_buy: {y_buy}
-        Yf_sell: {y_sell}
+Symbol: {symbol.upper()}
+Timeframe: {timeframe}
+Yf_buy: {y_buy}
+Yf_sell: {y_sell}
 
-        Exchange: {exchange}
-        Number of predictions: {len(yresults) + len(tresults)}
-        Yf_prediction: {yresults}
-        Tv_prediction: {tresults}
+Exchange: {exchange}
+Number of predictions: {len(yresults) + len(tresults)}
+Yf_prediction: {yresults}
+Tv_prediction: {tresults}
 
-        Buys: {all_buy}
-        Sells: {all_sell}
-        All: {plus}
-        Suggestion: {suggestion}'''
+Buys: {all_buy}
+Sells: {all_sell}
+All: {plus}
+Suggestion: {suggestion}'''
     return info
 
 if __name__ == "__main__":
-   info = predict("btc", "15m", future_prediction=False, using_all_models=True)
+   info = predict("xrp", "15m", future_prediction=False, using_all_models=True)
    print(info)
     
