@@ -48,7 +48,7 @@ def process_for_prediction(data, index):
         return arr
 
 def make_prediction_for_yf(symbol, period, timeframe,index):
-    data = yf.download(symbol, period=period, interval=timeframe)
+    data = yf.download(symbol, period=period, interval=timeframe,progress=False)
     raw_data = process_for_prediction(data,index)
     for model in models_reverse:
       prediction = model.predict(np.array(raw_data).reshape(1, -1))
@@ -100,7 +100,7 @@ def symbol_handler(symbol):
     return f"{symbol}-usd", f"{symbol}usd", f"{symbol}usdt"
 
 def yf_data_handler(symbol, period, timeframe):
-    data = yf.download(symbol, period=period, interval=timeframe)
+    data = yf.download(symbol, period=period, interval=timeframe,progress=False)
     index_c = data.index.values
     index = index_c[-3:]
     if timeframe == "15m":
@@ -198,6 +198,6 @@ def predict(symbol,timeframe,future_prediction=False,using_all_models=False):
         Suggestion: {suggestion}'''
     return info
 
-info = predict("btc", "1mo", future_prediction=True, using_all_models=True)
+info = predict("btc", "15m", future_prediction=False, using_all_models=True)
 print(info)
     
