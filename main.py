@@ -182,47 +182,35 @@ def predict(symbol,timeframe,future_prediction=False):
     all_sell = y_sell + t_sell
     plus = all_buy - all_sell
 
-    try:
-      only_y_ratio = y_buy / y_sell
-    except:
-        only_y_ratio = "All Buy"
-    
-    try: 
-        all_ratio = all_buy / all_sell
-    except:
-        all_ratio = "All Buy"
 
     if y_buy > y_sell:
         suggestion = "BUY"
     else:
         suggestion = "SELL"
     
-    info = {
-        "YF index": index,
-        "TV index": tindex,
-        "current_utc_time": str(datetime.utcnow()),
-        "last_three": last_three,
+    info = f'''
+        YF index: {index}
+        TV index: {tindex}
+        Current_utc_time: {str(datetime.utcnow())}
+        Last_three: {last_three}
 
-        "timeframe": timeframe,
-        "yf_buy": y_buy,
-        "yf_sell": y_sell,
-        "YF Ratio": only_y_ratio,
+        Timeframe: {timeframe}
+        Yf_buy: {y_buy}
+        Yf_sell: {y_sell}
 
-        "Exchange": exchange,
-        "Number of predictions": len(yresults) + len(tresults),
-        "yf_prediction": yresults,
-        "tv_prediction": tresults,
+        Exchange: {exchange}
+        Number of predictions: {len(yresults) + len(tresults)}
+        Yf_prediction: {yresults}
+        Tv_prediction: {tresults}
 
-        "Buys": all_buy,
-        "Sells": all_sell,
-        "All": plus,
-        "Ratio": all_ratio,
-        "suggestion": suggestion}
+        Buys: {all_buy}
+        Sells: {all_sell}
+        All: {plus}
+        Suggestion: {suggestion}'''
 
     return info
 
 
-info = predict("btc", "15m", future_prediction=True)
-for i in info:
-    print(i, info[i])
+info = predict("btc", "1h", future_prediction=False)
+print(info)
     
