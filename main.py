@@ -338,7 +338,7 @@ def predict(symbol, timeframe):
     if suggestion > 0:
         suggestion = f"BUY {suggestion}/{all_buy+special_all_buy+suggested_all_buy+all_sell+special_all_sell+suggested_all_sell}"
     elif suggestion < 0:
-        suggestion = f"SELL {-1 * suggestion}{all_buy+special_all_buy+suggested_all_buy+all_sell+special_all_sell+suggested_all_sell}"
+        suggestion = f"SELL {-1 * suggestion}/{all_buy+special_all_buy+suggested_all_buy+all_sell+special_all_sell+suggested_all_sell}"
     else:
         suggestion = f"NEUTRAL"
     
@@ -362,11 +362,13 @@ def predict(symbol, timeframe):
 
     # info for all information
     infos.append(f'''
+Prediction for {symbol.upper()}
+Timeframe: {timeframe}
 YF index: {index}
 TV index: {tindex}
 Current_utc_time: {str(datetime.utcnow())}
 Last_three: {last_three}
-
+----------------------
 All Models:
 Yf_buy: {y_buy}
 Yf_sell: {y_sell}
@@ -379,7 +381,7 @@ Tv_sell_percent: {t_sell_percent}
 All_buy: {all_buy}
 All_sell: {all_sell}
 All: {plus}
-
+----------------------
 Special Models({timeframe}) :
 Yf_buy: {special_y_buy}
 Yf_sell: {special_y_sell}
@@ -392,7 +394,7 @@ Tv_sell_percent: {special_t_sell_percent}
 All_buy: {special_all_buy}
 All_sell: {special_all_sell}
 All: {special_plus}
-
+----------------------
 Suggested Models(Monthly, Weekly, Daily) :
 Yf_buy: {suggested_y_buy}
 Yf_sell: {suggested_y_sell}
@@ -405,7 +407,7 @@ Tv_sell_percent: {suggested_t_sell_percent}
 All_buy: {suggested_all_buy}
 All_sell: {suggested_all_sell}
 All: {suggested_plus}
-
+----------------------
 All_Suggestion : {suggestion}
 TV_Suggestion : {t_suggestion}
 YF_Suggestion : {y_suggestion}
@@ -536,7 +538,7 @@ YF_Suggestion : {y_suggestion}
     if suggestion > 0:
         suggestion = f"BUY {suggestion}/{all_buy+special_all_buy+suggested_all_buy+all_sell+special_all_sell+suggested_all_sell}"
     elif suggestion < 0:
-        suggestion = f"SELL {-1 * suggestion}{all_buy+special_all_buy+suggested_all_buy+all_sell+special_all_sell+suggested_all_sell}"
+        suggestion = f"SELL {-1 * suggestion}/{all_buy+special_all_buy+suggested_all_buy+all_sell+special_all_sell+suggested_all_sell}"
     else:
         suggestion = f"NEUTRAL"
 
@@ -561,11 +563,13 @@ YF_Suggestion : {y_suggestion}
 
     # info for all information
     infos.append(f'''
+Future Prediction for {symbol.upper()}
+Timeframe: {timeframe}
 YF index: {index}
 TV index: {tindex}
 Current_utc_time: {str(datetime.utcnow())}
 Last_three: {last_three}
-
+----------------------
 All Models:
 Yf_buy: {y_buy}
 Yf_sell: {y_sell}
@@ -578,7 +582,7 @@ Tv_sell_percent: {t_sell_percent}
 All_buy: {all_buy}
 All_sell: {all_sell}
 All: {plus}
-
+----------------------
 Special Models({timeframe}) :
 Yf_buy: {special_y_buy}
 Yf_sell: {special_y_sell}
@@ -591,7 +595,7 @@ Tv_sell_percent: {special_t_sell_percent}
 All_buy: {special_all_buy}
 All_sell: {special_all_sell}
 All: {special_plus}
-
+----------------------
 Suggested Models(Monthly, Weekly, Daily) :
 Yf_buy: {suggested_y_buy}
 Yf_sell: {suggested_y_sell}
@@ -604,7 +608,7 @@ Tv_sell_percent: {suggested_t_sell_percent}
 All_buy: {suggested_all_buy}
 All_sell: {suggested_all_sell}
 All: {suggested_plus}
-
+----------------------
 All_Suggestion : {suggestion}
 TV_Suggestion : {t_suggestion}
 YF_Suggestion : {y_suggestion}
@@ -616,6 +620,6 @@ YF_Suggestion : {y_suggestion}
 
 if __name__ == "__main__":
 
-    info = predict("btc", "1mo")
+    info = predict("btc", "1d")
     print(info[0])
     print(info[1])
