@@ -248,8 +248,7 @@ def predict(symbol, timeframe):
             y_buy += 1
         else:
             y_sell += 1
-    y_buy_percent = y_buy / len(all_y) * 100
-    y_sell_percent = y_sell / len(all_y) * 100
+
     
     all_t = t_only_num + special_models_t_only_num
     t_buy = 0
@@ -259,8 +258,7 @@ def predict(symbol, timeframe):
             t_buy += 1
         else:
             t_sell += 1
-    t_buy_percent = t_buy / len(all_t) * 100
-    t_sell_percent = t_sell / len(all_t) * 100
+
 
     all_buy = y_buy + t_buy
     all_sell = y_sell + t_sell
@@ -292,10 +290,6 @@ def predict(symbol, timeframe):
             special_t_buy += 1
         else:
             special_t_sell += 1
-    special_y_buy_percent = special_y_buy / len(special_y) * 100
-    special_y_sell_percent = special_y_sell / len(special_y) * 100
-    special_t_buy_percent = special_t_buy / len(special_t) * 100
-    special_t_sell_percent = special_t_sell / len(special_t) * 100
     special_all_buy = special_y_buy + special_t_buy
     special_all_sell = special_y_sell + special_t_sell
     special_plus = special_all_buy - special_all_sell
@@ -325,10 +319,7 @@ def predict(symbol, timeframe):
             suggested_t_buy += 1
         else:
             suggested_t_sell += 1
-    suggested_y_buy_percent = suggested_y_buy / len(suggested_y) * 100
-    suggested_y_sell_percent = suggested_y_sell / len(suggested_y) * 100
-    suggested_t_buy_percent = suggested_t_buy / len(suggested_t) * 100
-    suggested_t_sell_percent = suggested_t_sell / len(suggested_t) * 100
+
     suggested_all_buy = suggested_y_buy + suggested_t_buy
     suggested_all_sell = suggested_y_sell + suggested_t_sell
     suggested_plus = suggested_all_buy - suggested_all_sell
@@ -368,49 +359,40 @@ YF index: {index}
 TV index: {tindex}
 Current_utc_time: {str(datetime.utcnow())}
 Last_three: {last_three}
-----------------------
+---------------------------
+Y_Results: {yresults}
+T_Results: {tresults}
+----------------------------
 All Models:
 Yf_buy: {y_buy}
 Yf_sell: {y_sell}
 Tv_buy: {t_buy}
 Tv_sell: {t_sell}
-Yf_buy_percent: {y_buy_percent}
-Yf_sell_percent: {y_sell_percent}
-Tv_buy_percent: {t_buy_percent}
-Tv_sell_percent: {t_sell_percent}
 All_buy: {all_buy}
 All_sell: {all_sell}
 All: {plus}
-----------------------
+----------------------------
 Special Models({timeframe}) :
 Yf_buy: {special_y_buy}
 Yf_sell: {special_y_sell}
 Tv_buy: {special_t_buy}
 Tv_sell: {special_t_sell}
-Yf_buy_percent: {special_y_buy_percent}
-Yf_sell_percent: {special_y_sell_percent}
-Tv_buy_percent: {special_t_buy_percent}
-Tv_sell_percent: {special_t_sell_percent}
 All_buy: {special_all_buy}
 All_sell: {special_all_sell}
 All: {special_plus}
-----------------------
+----------------------------
 Suggested Models(Monthly, Weekly, Daily) :
 Yf_buy: {suggested_y_buy}
 Yf_sell: {suggested_y_sell}
 Tv_buy: {suggested_t_buy}
 Tv_sell: {suggested_t_sell}
-Yf_buy_percent: {suggested_y_buy_percent}
-Yf_sell_percent: {suggested_y_sell_percent}
-Tv_buy_percent: {suggested_t_buy_percent}
-Tv_sell_percent: {suggested_t_sell_percent}
 All_buy: {suggested_all_buy}
 All_sell: {suggested_all_sell}
 All: {suggested_plus}
-----------------------
+----------------------------
+YF_Suggestion : {y_suggestion}
 All_Suggestion : {suggestion}
 TV_Suggestion : {t_suggestion}
-YF_Suggestion : {y_suggestion}
 ''')
 
     yresults = []
@@ -450,8 +432,7 @@ YF_Suggestion : {y_suggestion}
             y_buy += 1
         else:
             y_sell += 1
-    y_buy_percent = y_buy / len(all_y) * 100
-    y_sell_percent = y_sell / len(all_y) * 100
+
 
     all_t = t_only_num + special_models_t_only_num
     t_buy = 0
@@ -461,8 +442,7 @@ YF_Suggestion : {y_suggestion}
             t_buy += 1
         else:
             t_sell += 1
-    t_buy_percent = t_buy / len(all_t) * 100
-    t_sell_percent = t_sell / len(all_t) * 100
+
 
     all_buy = y_buy + t_buy
     all_sell = y_sell + t_sell
@@ -493,10 +473,6 @@ YF_Suggestion : {y_suggestion}
             special_t_buy += 1
         else:
             special_t_sell += 1
-    special_y_buy_percent = special_y_buy / len(special_y) * 100
-    special_y_sell_percent = special_y_sell / len(special_y) * 100
-    special_t_buy_percent = special_t_buy / len(special_t) * 100
-    special_t_sell_percent = special_t_sell / len(special_t) * 100
     special_all_buy = special_y_buy + special_t_buy
     special_all_sell = special_y_sell + special_t_sell
     special_plus = special_all_buy - special_all_sell
@@ -526,10 +502,6 @@ YF_Suggestion : {y_suggestion}
             suggested_t_buy += 1
         else:
             suggested_t_sell += 1
-    suggested_y_buy_percent = suggested_y_buy / len(suggested_y) * 100
-    suggested_y_sell_percent = suggested_y_sell / len(suggested_y) * 100
-    suggested_t_buy_percent = suggested_t_buy / len(suggested_t) * 100
-    suggested_t_sell_percent = suggested_t_sell / len(suggested_t) * 100
     suggested_all_buy = suggested_y_buy + suggested_t_buy
     suggested_all_sell = suggested_y_sell + suggested_t_sell
     suggested_plus = suggested_all_buy - suggested_all_sell
@@ -569,50 +541,42 @@ YF index: {index}
 TV index: {tindex}
 Current_utc_time: {str(datetime.utcnow())}
 Last_three: {last_three}
-----------------------
+---------------------------
+Y_Results: {yresults}
+T_Results: {tresults}
+----------------------------
 All Models:
 Yf_buy: {y_buy}
 Yf_sell: {y_sell}
 Tv_buy: {t_buy}
 Tv_sell: {t_sell}
-Yf_buy_percent: {y_buy_percent}
-Yf_sell_percent: {y_sell_percent}
-Tv_buy_percent: {t_buy_percent}
-Tv_sell_percent: {t_sell_percent}
 All_buy: {all_buy}
 All_sell: {all_sell}
 All: {plus}
-----------------------
+----------------------------
 Special Models({timeframe}) :
 Yf_buy: {special_y_buy}
 Yf_sell: {special_y_sell}
 Tv_buy: {special_t_buy}
 Tv_sell: {special_t_sell}
-Yf_buy_percent: {special_y_buy_percent}
-Yf_sell_percent: {special_y_sell_percent}
-Tv_buy_percent: {special_t_buy_percent}
-Tv_sell_percent: {special_t_sell_percent}
 All_buy: {special_all_buy}
 All_sell: {special_all_sell}
 All: {special_plus}
-----------------------
+----------------------------
 Suggested Models(Monthly, Weekly, Daily) :
 Yf_buy: {suggested_y_buy}
 Yf_sell: {suggested_y_sell}
 Tv_buy: {suggested_t_buy}
 Tv_sell: {suggested_t_sell}
-Yf_buy_percent: {suggested_y_buy_percent}
-Yf_sell_percent: {suggested_y_sell_percent}
-Tv_buy_percent: {suggested_t_buy_percent}
-Tv_sell_percent: {suggested_t_sell_percent}
 All_buy: {suggested_all_buy}
 All_sell: {suggested_all_sell}
 All: {suggested_plus}
-----------------------
+----------------------------
+YF_Suggestion : {y_suggestion}
 All_Suggestion : {suggestion}
 TV_Suggestion : {t_suggestion}
-YF_Suggestion : {y_suggestion}
 ''')
+
 
     return infos
 

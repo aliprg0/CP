@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 
 symbols = ["btc","eth","trx","ltc","xrp","bnb","ada","sql","doge","dot","shib",""]
-timeframes = ["15m","1h","1d","1wk","1mo"]
+timeframes = ["1d","1wk","1mo"]
 
    
 def start() :
@@ -19,9 +19,10 @@ def start() :
     while True:
       for i in symbols:
         for j in timeframes:
-          bot.send_message("@getcryptupdate", predict(i, j,future_prediction=False, using_all_models=True))
+          bot.send_message("@getcryptupdate", predict(i, j)[0])
           time.sleep(10)
-
+          bot.send_message("@getcryptupdate", predict(i, j)[1])
+          time.sleep(60)
 
 if __name__ == "__main__":
   start()
