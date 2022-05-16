@@ -326,9 +326,9 @@ def predict(symbol, timeframe):
    
     suggestion = plus + special_plus + suggested_plus
     if suggestion > 0:
-        suggestion = f"BUY {suggestion}/{all_buy+special_all_buy+suggested_all_buy+all_sell+special_all_sell+suggested_all_sell} ({round(float((suggestion)/(all_buy+special_all_buy+suggested_all_buy+all_sell+special_all_sell+suggested_all_sell)),2)*100}%)"
+        suggestion = f"BUY {suggestion}/{all_buy+special_all_buy+suggested_all_buy+all_sell+special_all_sell+suggested_all_sell} ({round(float((suggestion)/(all_buy+special_all_buy+suggested_all_buy+all_sell+special_all_sell+suggested_all_sell))*100,2)}%)"
     elif suggestion < 0:
-        suggestion = f"SELL {-1 * suggestion}/{all_buy+special_all_buy+suggested_all_buy+all_sell+special_all_sell+suggested_all_sell} ({-1 * round(float((suggestion)/(all_buy+special_all_buy+suggested_all_buy+all_sell+special_all_sell+suggested_all_sell)),2)*100}%)"
+        suggestion = f"SELL {-1 * suggestion}/{all_buy+special_all_buy+suggested_all_buy+all_sell+special_all_sell+suggested_all_sell} ({-1 * round(float((suggestion)/(all_buy+special_all_buy+suggested_all_buy+all_sell+special_all_sell+suggested_all_sell))*100,2)}%)"
     else:
         suggestion = f"NEUTRAL"
 
@@ -336,20 +336,21 @@ def predict(symbol, timeframe):
     y_suggestion = y_buy + special_y_buy + suggested_y_buy - \
         y_sell - special_y_sell - suggested_y_sell
     if y_suggestion > 0:
-        y_suggestion = f"BUY {y_suggestion}/{y_buy+special_y_buy+suggested_y_buy+y_sell+special_y_sell+suggested_y_sell} ({round(float((y_suggestion)/(y_buy+special_y_buy+suggested_y_buy+y_sell+special_y_sell+suggested_y_sell)),2)*100}%)"
+        y_suggestion = f"BUY {y_suggestion}/{y_buy+special_y_buy+suggested_y_buy+y_sell+special_y_sell+suggested_y_sell} ({round(float((y_suggestion)/(y_buy+special_y_buy+suggested_y_buy+y_sell+special_y_sell+suggested_y_sell))*100,2)}%)"
     elif y_suggestion < 0:
-        y_suggestion = f"SELL {-1 * y_suggestion}/{y_buy+special_y_buy+suggested_y_buy+y_sell+special_y_sell+suggested_y_sell} ({-1 * round(float((y_suggestion)/(y_buy+special_y_buy+suggested_y_buy+y_sell+special_y_sell+suggested_y_sell)),2)*100}%)"
+        y_suggestion = f"SELL {-1 * y_suggestion}/{y_buy+special_y_buy+suggested_y_buy+y_sell+special_y_sell+suggested_y_sell} ({-1 * round(float((y_suggestion)/(y_buy+special_y_buy+suggested_y_buy+y_sell+special_y_sell+suggested_y_sell))*100,2)}%)"
     else:
         y_suggestion = f"NEUTRAL"
     # only tv suggestion
     t_suggestion = t_buy + special_t_buy + suggested_t_buy - \
         t_sell - special_t_sell - suggested_t_sell
     if t_suggestion > 0:
-        t_suggestion = f"BUY {t_suggestion}/{t_buy+special_t_buy+suggested_t_buy+t_sell+special_t_sell+suggested_t_sell} ({round(float((t_suggestion)/(t_buy+special_t_buy+suggested_t_buy+t_sell+special_t_sell+suggested_t_sell)),2)*100}%)"
+        t_suggestion = f"BUY {t_suggestion}/{t_buy+special_t_buy+suggested_t_buy+t_sell+special_t_sell+suggested_t_sell} ({round(float((t_suggestion)/(t_buy+special_t_buy+suggested_t_buy+t_sell+special_t_sell+suggested_t_sell))*100,2)}%)"
     elif t_suggestion < 0:
-        t_suggestion = f"SELL {-1 * t_suggestion}/{t_buy+special_t_buy+suggested_t_buy+t_sell+special_t_sell+suggested_t_sell} ({-1 * round(float((t_suggestion)/(t_buy+special_t_buy+suggested_t_buy+t_sell+special_t_sell+suggested_t_sell)),2)*100}%)"
+        t_suggestion = f"SELL {-1 * t_suggestion}/{t_buy+special_t_buy+suggested_t_buy+t_sell+special_t_sell+suggested_t_sell} ({-1 * round(float((t_suggestion)/(t_buy+special_t_buy+suggested_t_buy+t_sell+special_t_sell+suggested_t_sell))*100,2)}%)"
     else:
         t_suggestion = f"NEUTRAL"
+
 
     # info for all information
     infos.append(f'''
@@ -510,9 +511,9 @@ TV_Suggestion : {t_suggestion}
 
     suggestion = plus + special_plus + suggested_plus
     if suggestion > 0:
-        suggestion = f"BUY {suggestion}/{all_buy+special_all_buy+suggested_all_buy+all_sell+special_all_sell+suggested_all_sell} ({round(float((suggestion)/(all_buy+special_all_buy+suggested_all_buy+all_sell+special_all_sell+suggested_all_sell)),2)*100}%)"
+        suggestion = f"BUY {suggestion}/{all_buy+special_all_buy+suggested_all_buy+all_sell+special_all_sell+suggested_all_sell} ({round(float((suggestion)/(all_buy+special_all_buy+suggested_all_buy+all_sell+special_all_sell+suggested_all_sell))*100,2)}%)"
     elif suggestion < 0:
-        suggestion = f"SELL {-1 * suggestion}/{all_buy+special_all_buy+suggested_all_buy+all_sell+special_all_sell+suggested_all_sell} ({-1 * round(float((suggestion)/(all_buy+special_all_buy+suggested_all_buy+all_sell+special_all_sell+suggested_all_sell)),2)*100}%)"
+        suggestion = f"SELL {-1 * suggestion}/{all_buy+special_all_buy+suggested_all_buy+all_sell+special_all_sell+suggested_all_sell} ({-1 * round(float((suggestion)/(all_buy+special_all_buy+suggested_all_buy+all_sell+special_all_sell+suggested_all_sell))*100,2)}%)"
     else:
         suggestion = f"NEUTRAL"
 
@@ -520,18 +521,18 @@ TV_Suggestion : {t_suggestion}
     y_suggestion = y_buy + special_y_buy + suggested_y_buy - \
         y_sell - special_y_sell - suggested_y_sell
     if y_suggestion > 0:
-        y_suggestion = f"BUY {y_suggestion}/{y_buy+special_y_buy+suggested_y_buy+y_sell+special_y_sell+suggested_y_sell} ({round(float((y_suggestion)/(y_buy+special_y_buy+suggested_y_buy+y_sell+special_y_sell+suggested_y_sell)),2)*100}%)"
+        y_suggestion = f"BUY {y_suggestion}/{y_buy+special_y_buy+suggested_y_buy+y_sell+special_y_sell+suggested_y_sell} ({round(float((y_suggestion)/(y_buy+special_y_buy+suggested_y_buy+y_sell+special_y_sell+suggested_y_sell))*100,2)}%)"
     elif y_suggestion < 0:
-        y_suggestion = f"SELL {-1 * y_suggestion}/{y_buy+special_y_buy+suggested_y_buy+y_sell+special_y_sell+suggested_y_sell} ({-1 * round(float((y_suggestion)/(y_buy+special_y_buy+suggested_y_buy+y_sell+special_y_sell+suggested_y_sell)),2)*100}%)"
+        y_suggestion = f"SELL {-1 * y_suggestion}/{y_buy+special_y_buy+suggested_y_buy+y_sell+special_y_sell+suggested_y_sell} ({-1 * round(float((y_suggestion)/(y_buy+special_y_buy+suggested_y_buy+y_sell+special_y_sell+suggested_y_sell))*100,2)}%)"
     else:
         y_suggestion = f"NEUTRAL"
     # only tv suggestion
     t_suggestion = t_buy + special_t_buy + suggested_t_buy - \
         t_sell - special_t_sell - suggested_t_sell
     if t_suggestion > 0:
-        t_suggestion = f"BUY {t_suggestion}/{t_buy+special_t_buy+suggested_t_buy+t_sell+special_t_sell+suggested_t_sell} ({round(float((t_suggestion)/(t_buy+special_t_buy+suggested_t_buy+t_sell+special_t_sell+suggested_t_sell)),2)*100}%)"
+        t_suggestion = f"BUY {t_suggestion}/{t_buy+special_t_buy+suggested_t_buy+t_sell+special_t_sell+suggested_t_sell} ({round(float((t_suggestion)/(t_buy+special_t_buy+suggested_t_buy+t_sell+special_t_sell+suggested_t_sell))*100,2)}%)"
     elif t_suggestion < 0:
-        t_suggestion = f"SELL {-1 * t_suggestion}/{t_buy+special_t_buy+suggested_t_buy+t_sell+special_t_sell+suggested_t_sell} ({-1 * round(float((t_suggestion)/(t_buy+special_t_buy+suggested_t_buy+t_sell+special_t_sell+suggested_t_sell)),2)*100}%)"
+        t_suggestion = f"SELL {-1 * t_suggestion}/{t_buy+special_t_buy+suggested_t_buy+t_sell+special_t_sell+suggested_t_sell} ({-1 * round(float((t_suggestion)/(t_buy+special_t_buy+suggested_t_buy+t_sell+special_t_sell+suggested_t_sell))*100,2)}%)"
     else:
         t_suggestion = f"NEUTRAL"
 
