@@ -561,12 +561,8 @@ def load_models():
             models[j] = load_model(os.getcwd()+"/models/"+i+"/"+j)
     return models
 
-def handle_models(models,timeframe):
-    
-    # suggested models start with D, W, M
-    # seprate them
+def load_suggested_models(models):
     suggested_models = {}
-    special_models = {}
     for i in models:
         if i[0] == "D":
             suggested_models[i] = models[i]
@@ -574,21 +570,24 @@ def handle_models(models,timeframe):
             suggested_models[i] = models[i]
         if i[0] == "M":
             suggested_models[i] = models[i]
+    return suggested_models
+
+def load_special_models(models,timeframe):
+    special_models = {}
     dictt = {"1mo":"M","1wk":"W","1d":"D","1h":"H","15m":"15"}
-    # change the timeframe to the special model name and find the model that start with the same name
     for i in models:
         special_models[dictt[timeframe]+i[1:]] = models[i]
-    return suggested_models, special_models
-    
+    return special_models
+
 if __name__ == "__main__":
 
     symbol = "btc"
-    timeframe = "1d"
+    timeframe = "1mo"
 
-    # load models
     models = load_models()
-    # handle models
-    suggested_models, special_models = handle_models(models,timeframe)
+    suggested_models = load_suggested_models(models)
+    special_models = load_special_models(models,timeframe)
+
 
     info = predict(symbol=symbol, timeframe=timeframe, models=models, special_models=special_models, suggested_models=suggested_models)
     print(info[0])
