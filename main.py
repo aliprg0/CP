@@ -8,17 +8,6 @@ from tensorflow.keras.models import load_model
 import os
 from datetime import datetime
 
-
-def load_models(timeframe):
-    models = {}
-    # load all models in the models folder
-    for root, dirs, files in os.walk("./models"):
-        for file in files:
-            if file.endswith(".h5"):
-                models[file] = load_model(os.path.join(root, file))
-    return models
-
-
 def scaler(row):
     scaler = MinMaxScaler(feature_range=(-1, 1))
     row = scaler.fit_transform(row)
@@ -172,30 +161,6 @@ def get_special_models_names(timeframe):
         return "WSG136.h5", "WCG136.h5"
     elif timeframe == "1mo":
         return "MSG136.h5", "MCG136.h5"
-
-def load_suggested_models():
-    models = {}
-    #load models in 1mo - 1wk - 1d
-    lst = os.listdir(os.getcwd()+"/models")
-    models = {}
-    # load models in 1mo - 1wk - 1d
-    # drop 1h and 15m from the list
-    lst = [i for i in lst if i not in ["15SG136.h5", "15CG136.h5", "HSG136.h5", "HCG136.h5"]]
-    for i in lst:
-        models_in_folder = os.listdir(os.getcwd()+"/models/"+i)
-        for j in models_in_folder:
-            models[j] = load_model(os.getcwd()+"/models/"+i+"/"+j)
-    return models
-
-def load_all_models(timeframe):
-    models = load_models(timeframe)
-    suggested_models = load_suggested_models()
-    special_models = get_special_models_names(timeframe)
-    #copy models with special names into another dict
-    special_models_dict = {}
-    for i in special_models:
-        special_models_dict[i] = models.pop(i)
-    return models, special_models_dict, suggested_models
 
 def predict(symbol, timeframe,models,special_models,suggested_models):
     global yresults
@@ -587,13 +552,45 @@ TV_Suggestion : {t_suggestion}
 
     return infos
 
+def load_models():
+    lst = os.listdir(os.getcwd()+"/models")
+    models = {}
+    for i in lst:
+        models_in_folder = os.listdir(os.getcwd()+"/models/"+i)
+        for j in models_in_folder:
+            models[j] = load_model(os.getcwd()+"/models/"+i+"/"+j)
+    return models
 
+def handle_models(models,timeframe):
+    
+    # suggested models start with D, W, M
+    # seprate them
+    suggested_models = {}
+    special_models = {}
+    for i in models:
+        if i[0] == "D":
+            suggested_models[i] = models[i]
+        if i[0] == "W":
+            suggested_models[i] = models[i]
+        if i[0] == "M":
+            suggested_models[i] = models[i]
+    dictt = {"1mo":"M","1wk":"W","1d":"D","1h":"H","15m":"15"}
+    # change the timeframe to the special model name and find the model that start with the same name
+    for i in models:
+        special_models[dictt[timeframe]+i[1:]] = models[i]
+    return suggested_models, special_models
+    
 if __name__ == "__main__":
 
     symbol = "btc"
     timeframe = "1d"
-    models, special_models, suggested_models = load_all_models(timeframe)
+
+    # load models
+    models = load_models()
+    # handle models
+    suggested_models, special_models = handle_models(models,timeframe)
 
     info = predict(symbol=symbol, timeframe=timeframe, models=models, special_models=special_models, suggested_models=suggested_models)
     print(info[0])
     print(info[1])
+
