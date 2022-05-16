@@ -186,8 +186,18 @@ def load_suggested_models():
         for j in models_in_folder:
             models[j] = load_model(os.getcwd()+"/models/"+i+"/"+j)
     return models
-    
-def predict(symbol, timeframe):
+
+def load_all_models(timeframe):
+    models = load_models(timeframe)
+    suggested_models = load_suggested_models()
+    special_models = get_special_models_names(timeframe)
+    #copy models with special names into another dict
+    special_models_dict = {}
+    for i in special_models:
+        special_models_dict[i] = models.pop(i)
+    return models, special_models_dict, suggested_models
+
+def predict(symbol, timeframe,models,special_models,suggested_models):
     global yresults
     global tresults
     global models_reverse
@@ -204,14 +214,7 @@ def predict(symbol, timeframe):
     global suggested_models_y_only_num
     global suggested_models_t_only_num
 
-    models = load_models(timeframe)
-    suggested_models = load_suggested_models()
-    special_models = get_special_models_names(timeframe)
-    #copy models with special names into another dict
-    special_models_dict = {}
-    for i in special_models:
-        special_models_dict[i] = models.pop(i)
-
+    
     yresults = []
     tresults = []
     y_only_num = []
@@ -582,13 +585,15 @@ All_Suggestion : {suggestion}
 TV_Suggestion : {t_suggestion}
 ''')
 
-
     return infos
 
 
-
 if __name__ == "__main__":
+    
+    symbol = "btc"
+    timeframe = "1d"
+    models, special_models, suggested_models = load_all_models(timeframe)
 
-    info = predict("btc", "1d")
+    info = predict(symbol=symbol,timeframe=timeframe, models, special_models, suggested_models)
     print(info[0])
     print(info[1])
