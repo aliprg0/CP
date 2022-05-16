@@ -240,7 +240,7 @@ def predict(symbol, timeframe,models,special_models,suggested_models):
     index, last_three = yf_data_handler(ysymbol, period, timeframe)
 
     make_prediction(ysymbol, period, timeframe, tsymbol,
-                    exchange, ttimeframe, tindex, index, tsymbol2,models,special_models_dict,suggested_models)
+                    exchange, ttimeframe, tindex, index, tsymbol2,models,special_models,suggested_models)
 
     # all models
     all_y = y_only_num + special_models_y_only_num
@@ -427,7 +427,7 @@ TV_Suggestion : {t_suggestion}
     index = index + 1
 
     make_prediction(ysymbol, period, timeframe, tsymbol,
-                    exchange, ttimeframe, tindex, index, tsymbol2, models, special_models_dict, suggested_models)
+                    exchange, ttimeframe, tindex, index, tsymbol2, models, special_models, suggested_models)
 
     # all models
     all_y = y_only_num + special_models_y_only_num
@@ -589,11 +589,11 @@ TV_Suggestion : {t_suggestion}
 
 
 if __name__ == "__main__":
-    
+
     symbol = "btc"
     timeframe = "1d"
     models, special_models, suggested_models = load_all_models(timeframe)
 
-    info = predict(symbol=symbol,timeframe=timeframe, models, special_models, suggested_models)
+    info = predict(symbol=symbol, timeframe=timeframe, models=models, special_models=special_models, suggested_models=suggested_models)
     print(info[0])
     print(info[1])
